@@ -1,0 +1,24 @@
+﻿@page
+@model AAAAAAAAAAA.Pages.CartModel
+@{
+	ViewData["Title"] = "Cart";
+}
+
+@if (Model.CartList.Count > 0){
+	@foreach (var item in Model.CartList)
+{
+		
+		<div class="card">
+			<div class="card-body"><h5 class="card-title">@item.Product.Name</h5></div>
+			<div class="card-body"><h5 class="card-title">@item.Product.Price</h5></div>
+			<a asp-page="/Cart" asp-page-handler="Remove" asp-route-id="@item.CartId" class="btn btn-danger">Delete</a>
+	</div>
+	}
+<div id="price">
+	<h4>Total Price = @Model.OrderTotal</h4>
+</div>
+}
+else
+{
+	<h4>Cart is Empty</h4>
+}

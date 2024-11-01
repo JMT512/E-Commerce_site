@@ -1,0 +1,34 @@
+﻿@page
+@model AAAAAAAAAAA.Pages.addUserModel
+@{
+	ViewData["Title"] = "Add User Tool";
+}
+
+<h1>Add A User</h1>
+
+<div id= "addUser">
+	<form id="addNewUser" method="post">
+		<input type="text" asp-for="@Model.firstName" id="addUserName" />
+
+		<input type="text" asp-for="@Model.lastName" id="addUserLastname" />
+
+		<input type="text" asp-for="@Model.email" id="addUserEmail" />
+
+		<input type="text" asp-for="@Model.password" id="UpdatePassword" />
+		<input type="text" asp-for="@Model.passwordConfirmation" id="UpdatePassword" />
+
+		<h3>Choose Role for New User</h3>
+		<input type="radio" id="createUserAdmin" asp-for= "selectedRole" value="Admin">
+		<label for="surname">Admin</label>
+		<input type="radio" id="createUserEditor"  asp-for="selectedRole" value="Editor">
+		<label for="createUserEditor">Editor</label>
+		<input type="radio" id="createUserVisitor" asp-for="selectedRole" value="Visitor">
+		<label for="createUserVisitor">Visitor</label>
+
+		<input type="submit" asp-page-handler="Create"  value="Add" />
+	</form>
+
+
+</div>
+
+<script></script>

@@ -1,0 +1,34 @@
+﻿@page "{id}"
+@model AAAAAAAAAAA.Pages.productDetailsModel
+@{
+	ViewData["Title"] = "Product Details";
+}
+
+<h3>@Model.product.Name</h3>
+<h2>@Model.currentRating</h2>
+<h2>@Model.product.Price</h2>
+<p>@Model.product.Description</p>
+
+@if (Model.userRatingStatus == 0)
+{
+	<form id="UpdateRating" method="post">
+		<input type="text" asp-for="@Model.userHasRated" id="UpdateRating" />
+		<input type="text" asp-for="@Model.userRatingTitle" id="UpdateRatingTitle"/>
+		<input type="text" asp-for="@Model.userRatingDescription" id="UpdateRatingDescription" />
+		<button asp-page="/productDetails" asp-page-handler="Update" asp-route-id="@Model.productId">Rate</button>
+	</form>
+}
+@if (Model.fetchReviews != null)
+{
+	@foreach (var thing in Model.fetchReviews)
+	{
+		<h4>@thing.UserReviewTitle</h4>
+		<h4>@thing.UserProductRating</h4>
+		<p>@thing.UserReviewText</p>
+	}
+
+}
+else
+{
+	<h3>No Reviews Present. Be the first to review</h3>
+}

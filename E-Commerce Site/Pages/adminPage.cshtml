@@ -1,0 +1,89 @@
+﻿@page
+@model AAAAAAAAAAA.Pages.adminPageModel
+@{
+	ViewData["Title"] = "Admin Tools";
+}
+
+<a asp-page="/addUser" >Add User</a>
+
+
+<section class="container-users">
+<h1>Admin and Visitor</h1>
+
+<h4>ADMIN USERS</h4>
+	@if (User.IsInRole("superAdmin"))
+	{
+		@if (Model.userAdmin.Count > 0)
+		{
+			<table>
+				<tr>Name</tr>
+				<tr>Surname</tr>
+				<tr>Email Adress</tr>
+				@foreach (var admin in Model.userAdmin)
+				{
+					<tr>
+						<td>@admin.FirstName</td>
+						<td>@admin.LastName</td>
+						<td>@admin.Email</td>
+						<td><a asp-page="/adminPage" asp-page-handler="Delete" asp-route-id="@admin.Id" class="btn btn-danger">Delete</a></td>
+						<td><a asp-page="/editAdminPage" asp-page-handler="Update" asp-route-id="@admin.Id" class="btn btn-danger">Update Details</a></td>
+					</tr>
+				}
+				></table>
+		}
+		else
+		{
+			<h4>No users available at this time</h4>
+		}
+	}
+
+	<h4>EDITOR USERS</h4>
+	@if (Model.userEditor.Count > 0)
+	{
+		<table>
+			<tr>Name</tr>
+			<tr>Surname</tr>
+			<tr>Email Adress</tr>
+			@foreach (var editor in Model.userEditor)
+			{
+				<tr>
+					<td>@editor.FirstName</td>
+					<td>@editor.LastName</td>
+					<td>@editor.Email</td>
+					<td><a asp-page="/adminPage" asp-page-handler="Delete" asp-route-id="@editor.Id" class="btn btn-danger">Delete</a></td>
+					<td><a asp-page="/editAdminPage" asp-page-handler="Update" asp-route-id="@editor.Id" class="btn btn-danger">Update Details</a></td>
+				</tr>
+			}
+			>
+		</table>
+	}
+	else
+	{
+		<h4>No users available at this time</h4>
+	}
+
+	<h4>VISITOR USERS</h4>
+	@if (Model.userVisitor.Count > 0)
+	{
+		<table>
+			<tr>Name</tr>
+			<tr>Surname</tr>
+			<tr>Email Adress</tr>
+			@foreach (var visitor in Model.userVisitor)
+			{
+				<tr>
+					<td>@visitor.FirstName</td>
+					<td>@visitor.LastName</td>
+					<td>@visitor.Email</td>
+					<td><a asp-page="/adminPage" asp-page-handler="Delete" asp-route-id="@visitor.Id" class="btn btn-danger">Delete</a></td>
+					<td><a asp-page="/editAdminPage" asp-page-handler="Update" asp-route-id="@visitor.Id" class="btn btn-danger">Update Details</a></td>
+				</tr>
+			}
+			>
+		</table>
+	}
+	else
+	{
+		<h4>No users available at this time</h4>
+	}
+</section>

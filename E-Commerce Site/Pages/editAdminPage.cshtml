@@ -1,0 +1,40 @@
+﻿@page "{id}"
+@model AAAAAAAAAAA.Pages.editAdminPageModel
+@{
+	ViewData["Title"] = "Edit a User";
+}
+
+
+<h1>Edit a User</h1>
+
+<div id="updateForm">
+ 		<input type="radio" id="name" name="updateDetails" value="UpdateName">
+		<label for="name">Update Name</label>
+		<input type="radio" id="surname" name="updateDetails" value="UpdateSurname">
+		<label for="surname">Update Surname</label>
+		<input type="radio" id="email" name="updateDetails" value="UpdateEmail">
+		<label for="email">Update Email</label>
+	    <input type="radio" id="passwordUpdate" name="updateDetails" value="passwordUpdate">
+	    <label for="passwordUpdate">Update Password</label>
+
+	
+	
+	<form id="UpdateNameUser" method="post">
+		<input type="text" asp-for="@Model.firstName" id="UpdateNameUser" />
+		<button asp-page="/editAdminPage" asp-page-handler="Update" asp-route-id="@Model.Id" asp-route-updateState="updatename">Update</button>
+	</form> 
+	<form id="UpdateSurname" method="post">
+		<input type="text" asp-for="@Model.lastName" id="UpdateSurname" />
+		<button asp-page="/editAdminPage" asp-page-handler="Update" asp-route-id="@Model.Id" asp-route-updateState="updatesurname">Update</button>
+	</form>
+	<form id="UpdateEmail" method="post">
+		<input type="text" asp-for="@Model.email" id="UpdateEmail" />
+		<button asp-page="/editAdminPage" asp-page-handler="Update" asp-route-id="@Model.Id" asp-route-updateState="updateemail">Update</button>
+	</form>
+	<form id="UpdatePassword" method="post">
+		<input type="text" asp-for="@Model.currentPassword" id="UpdatePassword" />
+		<input type="text" asp-for="@Model.password" id="UpdatePassword" />
+		<input type="text" asp-for="@Model.passwordConfirmation" id="UpdatePassword" />
+		<button asp-page="/editAdminPage" asp-page-handler="Update" asp-route-id="@Model.Id" asp-route-updateState="UpdatePassword">Update</button>
+	</form>
+</div>

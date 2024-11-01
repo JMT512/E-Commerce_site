@@ -1,0 +1,58 @@
+﻿@page
+@model AAAAAAAAAAA.Pages.ProductModel
+@{
+	ViewData["Title"] = "Product";
+}
+
+<section class="flex-container">
+	@if (Model.ProductList.Count > 0)
+	@foreach (var product in Model.ProductList)
+	{
+		<div class="card">
+			<div class="card-img" style="background-image": url('@product.ProductImage');></div> @*src="/Assets"*@
+			<div class="card-body"><h5 class="card-title">@product.Name</h5></div>
+			<div class="card-body"><h5 class="card-title">@product.Price</h5></div>
+			<div class="card-body"><h5 class="card-title">@product.Description</h5></div>
+			<a asp-page="/productDetails" asp-page-handler="" asp-route-id="@product.Id">View More</a>
+			<a asp-page="/Products" asp-page-handler="Cart" asp-route-id="@product.Id">Add to Cart</a>
+		
+				@if (User.IsInRole("Admin") || User.IsInRole("superAdmin") || User.IsInRole("Editor"))
+				{
+					<a asp-page="/Products" asp-page-handler="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>           @*asp-route-[parameter-name]="value"*@
+					
+					<div class="updateData">
+						<input type="checkbox" id="nameChange" name="nameChange" onclick =displayForm(1)>
+						<label for="nameChange"> Modify Name</label><br>
+						<input type="checkbox" id="priceChange" name="priceChange" onclick=displayForm(2)>
+						<label for="priceChange"> Modify Price</label><br>
+						<input type="checkbox" id="descriptionChange" name="descriptionChange" onclick=displayForm(3)>
+						<label for="descriptionChange"> Modify Description</label>
+						<input type="checkbox" id="imageChange" name="imageChange" onclick=displayForm(4)>
+						<label for="imageChange"> Modify Image</label>
+
+						<form id="UpdateName" method="post">
+							<input type="text" asp-for="product.Name" id="pname" />
+							<button asp-page="/Products" asp-page-handler="Submit" asp-route-id="@product.Id" asp-route-updateState="updatename">Update</button>
+							
+						</form>
+						<form id="UpdatePrice" method="post">
+							<input type="text" asp-for="product.Price" id="price" />
+							<button asp-page="/Products" asp-page-handler="Submit" asp-route-id="@product.Id" asp-route-updateState="updateprice">Update</button>
+						</form>
+						<form id="UpdateDescription" method="post">
+							<input type="text" asp-for="product.Description" id="pdescription" />
+							<button asp-page="/Products" asp-page-handler="Submit" asp-route-id="@product.Id" asp-route-updateState="updatedesc">Update</button>
+						</form>
+						<form id="UpdateImage" method="post">
+							<input type="text" asp-for="product.ProductImage" id="pimage" />
+							<button asp-page="/Products" asp-page-handler="Submit" asp-route-id="@product.Id" asp-route-updateState="updateimage">Update</button>
+						</form>
+					</div>
+				}
+			</div>
+		}
+	else
+	{
+		<h4>No products available at this time</h4>
+	}
+</section>

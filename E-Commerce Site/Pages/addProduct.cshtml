@@ -1,0 +1,21 @@
+﻿@page
+@model AAAAAAAAAAA.Pages.addProductModel
+@{
+	ViewData["Title"] = "Add Product";
+}
+
+<form action="" method="post">
+	<label for="pname" asp-for="@Model.product.Name">Product Name:</label>
+	<input type="text" asp-for="@Model.product.Name" id="pname"/>
+
+	<label for="pdescription" asp-for="@Model.product.Description">Product description:</label>
+	<input type="text" asp-for="@Model.product.Description" id="pdescription" />
+
+	<label for="price" asp-for="@Model.product.Price">Price:</label>
+	<input type="text" asp-for="@Model.product.Price" id="price" value="" />
+
+	<label for="pimage" asp-for="@Model.product.ProductImage">Product Image:</label>
+	<input type="text" asp-for="@Model.product.ProductImage" id="pimage" value="" />
+
+	<input type="submit" value="Submit" />
+</form>
